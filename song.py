@@ -13,7 +13,7 @@ def download_from_yt(url, total):
     try:
         yt = YouTube(url)
         video = yt.streams.filter(only_audio=True).first()
-        destination = './mp3_files'
+        destination = './musica_fuzzysets'
         out_file = video.download(output_path=destination)
         base, ext = os.path.splitext(out_file)
         new_file = base + '.mp3'
