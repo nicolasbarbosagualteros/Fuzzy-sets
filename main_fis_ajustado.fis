@@ -1,5 +1,5 @@
 [System]
-Name='main_fis'
+Name='main_fis_ajustado'
 Type='mamdani'
 Version=2.0
 NumInputs=3
@@ -15,16 +15,16 @@ DefuzzMethod='centroid'
 Name='rango_dinamico'
 Range=[0 1]
 NumMFs=3
-MF1='BAJO':'trimf',[-0.4167 0 0.4167]
-MF2='MODERADO':'trimf',[0.08333 0.5 0.9167]
-MF3='ALTO':'trimf',[0.5833 1 1.417]
+MF1='BAJO':'trimf',[0 0 0.33]
+MF2='MODERADO':'trimf',[0 0.854708075523376 1]
+MF3='ALTO':'trimf',[0.88 1 1]
 
 [Input2]
 Name='volumen_promedio'
-Range=[-30 30]
+Range=[-20 0]
 NumMFs=3
 MF1='BAJO':'trimf',[-55 -30 -5]
-MF2='MODERADO':'trimf',[-25 0 25]
+MF2='MODERADO':'trimf',[-28.4885600599253 -13.4885600599253 1.51143994007467]
 MF3='ALTO':'trimf',[5 30 55.02]
 
 [Input3]
