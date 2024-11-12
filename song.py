@@ -35,12 +35,12 @@ try:
     peak = max(y)
     range = librosa.feature.rms(y=y)[0].mean()
     dynamic_range = peak - range
-    print(f"Rango dinámico: {dynamic_range}")
+    print(f"Rango dinámico: {dynamic_range} dB")
     
     # Volumen promedio
     meter = pyln.Meter(sr)
     vol = meter.integrated_loudness(y)
-    print(f"Volumen promedio: {vol}")
+    print(f"Volumen promedio: {vol} dBFS")
 
     # Duración
     duracion = librosa.get_duration(y=y, sr=sr)
