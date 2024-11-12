@@ -2,8 +2,8 @@ from pytubefix import YouTube
 import librosa
 import pyloudnorm as pyln
 import os
-
-
+import matlab
+from scipy.io import savemat
 
 def download_from_yt(url):
     try:
@@ -46,5 +46,15 @@ try:
     duracion = librosa.get_duration(y=y, sr=sr)
     print(f"Duración de la canción: {duracion:.2f} segundos")
      
+    data = {
+    'dynamic_range': dynamic_range,
+    'vol': vol,
+    'duracion': duracion
+    }
+    savemat('audio_data.mat', data)
+
 except Exception as e:
     print(f"Error al analizar la cancion: {e}")
+    
+   
+
