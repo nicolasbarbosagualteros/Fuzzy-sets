@@ -1,0 +1,46 @@
+[System]
+Name='main_fis'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=0
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='rango_dinamico'
+Range=[0 10]
+NumMFs=3
+MF1='BAJO':'trimf',[-4.167 0 4.167]
+MF2='MODERADO':'trimf',[0.8333 5 9.167]
+MF3='ALTO':'trimf',[5.833 10 14.17]
+
+[Input2]
+Name='volumen_promedio'
+Range=[0 10]
+NumMFs=3
+MF1='BAJO':'trimf',[-4.167 0 4.167]
+MF2='MODERADO':'trimf',[0.8333 5 9.167]
+MF3='ALTO':'trimf',[5.833 10 14.17]
+
+[Input3]
+Name='duracion'
+Range=[0 1]
+NumMFs=3
+MF1='CORTO':'trimf',[-0.416666666666667 0 0.416666666666667]
+MF2='MEDIO':'trimf',[0.08333 0.5 0.9167]
+MF3='LARGO':'trimf',[0.583333333333333 1 1.41666666666667]
+
+[Output1]
+Name='nivel_de_produccion'
+Range=[0 10]
+NumMFs=3
+MF1='BAJO':'trimf',[-4.167 0 4.167]
+MF2='MEDIO':'trimf',[0.8333 5 9.167]
+MF3='ALTO':'trimf',[5.833 10 14.17]
+
+[Rules]

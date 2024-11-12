@@ -1,36 +1,50 @@
-
 from pytubefix import YouTube
-
+import librosa
+import pyloudnorm as pyln
 import os
 
-link = input("Ingrese el link de YouTube de la canción que desea descargar: ")
-link = str(link)
-yt = YouTube(url=link)
-play_list = [link]
-downloaded_count = 0
 
-def download_from_yt(url, total):
-    global downloaded_count
+
+def download_from_yt(url):
     try:
+        use_po_token=True 
         yt = YouTube(url)
         video = yt.streams.filter(only_audio=True).first()
-        destination = 'songs/'
+        destination = 'songs'
         out_file = video.download(output_path=destination)
         base, ext = os.path.splitext(out_file)
         new_file = base + '.mp3'
         os.rename(out_file, new_file)
-    except FileExistsError:
-        downloaded_count += 1
-        print("Archivo .mp3 ya existente", yt.title)
-    except:
-        print("Error en la descarga")
-    else:
-        downloaded_count += 1
-        print(yt.title, "Descargado exitosamente")
+        print(f"{yt.title} descargado exitosamente en {new_file}")
+        return new_file
+    except Exception as e:
+        print("Error en la descarga:", e)
+        return None
 
 
-ruta = "/Users/niko/Fuzzy-sets/songs/"+yt.title+".mp3"
-print("Descargado a la ruta",ruta)
+link = input("Ingrese el link de YouTube de la canción que desea descargar: ")
+ruta_cancion = download_from_yt(link)
+if not ruta_cancion:
+    print("No se pudo descargar la canción.")
+    
+cancion = ruta_cancion
+try:
+    y, sr = librosa.load(cancion)
 
-for song in play_list:
-    download_from_yt(song, len(play_list))
+    # Análisis de rango dinámico
+    peak = max(y)
+    range = librosa.feature.rms(y=y)[0].mean()
+    dynamic_range = peak - range
+    print(f"Rango dinámico: {dynamic_range}")
+    
+    # Volumen promedio
+    meter = pyln.Meter(sr)
+    vol = meter.integrated_loudness(y)
+    print(f"Volumen promedio: {vol}")
+
+    # Duración
+    duracion = librosa.get_duration(y=y, sr=sr)
+    print(f"Duración de la canción: {duracion:.2f} segundos")
+     
+except Exception as e:
+    print(f"Error al analizar la cancion: {e}")
