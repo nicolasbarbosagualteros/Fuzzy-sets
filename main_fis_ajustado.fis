@@ -16,15 +16,15 @@ Name='rango_dinamico'
 Range=[0 1]
 NumMFs=3
 MF1='BAJO':'trimf',[0 0 0.33]
-MF2='MODERADO':'trimf',[0 0.831393480300903 1]
+MF2='MODERADO':'trimf',[0 0.804551124572754 1]
 MF3='ALTO':'trimf',[0.88 1 1]
 
 [Input2]
 Name='volumen_promedio'
 Range=[-20 0]
 NumMFs=3
-MF1='BAJO':'trimf',[-31.6099340742461 -16.6099340742461 -1.60993407424613]
-MF2='MODERADO':'trimf',[-25 0 25]
+MF1='BAJO':'trimf',[-55 -30 -5]
+MF2='MODERADO':'trimf',[-25.0293022237648 -10.0293022237648 4.97069777623516]
 MF3='ALTO':'trimf',[5 30 55.02]
 
 [Input3]
@@ -32,7 +32,7 @@ Name='duracion'
 Range=[0 300]
 NumMFs=3
 MF1='CORTO':'trimf',[-125 0 125]
-MF2='MEDIO':'trimf',[25 150 275]
+MF2='MEDIO':'trimf',[122.818684807256 222.818684807256 275]
 MF3='LARGO':'trimf',[175 300 425]
 
 [Output1]
