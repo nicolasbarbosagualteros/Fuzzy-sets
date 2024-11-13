@@ -6,14 +6,17 @@ if  dynamic_range >= 0.87
     bajo_params_input1 = [0 0 dynamic_range];
     moderado_params_input1 = [0 0.5 1];
     alto_params_input1 = [0.87 1 1];
+    disp('Rango dinámico = Bajo')
 elseif dynamic_range <= 0.8665926456451416&&dynamic_range>0.8
     bajo_params_input1 = [0 0 0.33];
     moderado_params_input1 = [0 dynamic_range 1];
     alto_params_input1 = [0.88 1 1];
+    disp('Rango dinámico = Moderado')
 elseif dynamic_range <= 0.79 
     bajo_params_input1 = [0 0 0.87];
     moderado_params_input1 = [0 0.5 1];
     alto_params_input1 = [0 dynamic_range 1];
+    disp('Rango dinámico = Alto')
 end
 
 % Parámetros de rango dinámico
@@ -26,14 +29,17 @@ if vol <= -16
     bajo_params_input2 = [vol-15 vol vol+15];
     moderado_params_input2 = [-25 0 25];
     alto_params_input2 = [5 30 55.02];
+    disp('Volumen medio = Bajo')
 elseif vol <= -10
     bajo_params_input2 = [-55 -30 -5];
     moderado_params_input2 = [vol-15 vol vol+15];
     alto_params_input2 = [5 30 55.02];
+    disp('Volumen medio = Moderado')
 else
     bajo_params_input2 = [-55 -30 -5];
     moderado_params_input2 = [-25 0 25];
     alto_params_input2 = [vol-15 vol vol+15];
+    disp('Volumen medio = Alto')
 end
 
 % Parámetros del Volumen
@@ -46,14 +52,17 @@ if duracion <= 200
     corto_params_input3 = [max(-125, duracion*-1) 0 min(duracion, 125)];
     medio_params_input3 = [25 150 275];
     largo_params_input3 = [175 300 425];
+    disp('Duración = Corta')
 elseif duracion <= 300
     corto_params_input3 = [-125 0 125];
     medio_params_input3 = [max(25, duracion-100) duracion min(duracion+100, 275)];
     largo_params_input3 = [175 300 425];
+     disp('Duración = Media')
 else
     corto_params_input3 = [-125 0 125];
     medio_params_input3 = [25 150 275];
     largo_params_input3 = [max(175, duracion-125) duracion min(duracion+125, 425)];
+     disp('Duración = Larga')
 end
 
 % Parámetros de la duración
@@ -76,7 +85,7 @@ end
 
 % Resultado
 disp(['Nivel de producción: ', nivel_produccion]);
-
+disp(["Desfuzzificación:",output])
 % Gráficas
 figure;
 subplot(3, 1, 1);
@@ -89,4 +98,9 @@ title('Funciones de Membresía para Volumen promédio');
 
 subplot(3, 1, 3);
 plotmf(sistema_fis, 'input', 3);
-title('Funciones de Membresía para Duracion');
+title('Funciones de Membresía para Duración');
+
+figure;
+subplot(3,1,1)
+plotmf(sistema_fis,'output',1)
+title('Salida, Nivel de producción')
